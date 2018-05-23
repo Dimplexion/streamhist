@@ -42,7 +42,7 @@ import sys
 from bisect import bisect_left
 
 from sortedcontainers import SortedListWithKey
-from utils import (next_after, bin_diff, accumulate, linspace,
+from .utils import (next_after, bin_diff, accumulate, linspace,
                    iterator_types, argmin, bin_sums, roots)
 
 _all__ = ["StreamHist", "Bin"]
