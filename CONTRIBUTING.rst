@@ -7,7 +7,7 @@ Conventions
 In general, StreamHist follows the style and documentation conventions
 of the Numpy project where applicable. Please see `A Guide to
 NumPy/SciPy
-Documentation <https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`__
+Documentation <https://numpydoc.readthedocs.io/en/latest/>`__
 for details.
 
 Documentation
