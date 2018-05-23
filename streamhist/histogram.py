@@ -234,7 +234,7 @@ class StreamHist(object):
 
     @classmethod
     def from_dict(cls, d):
-        """Create a StreaHist object from a dictionary representation.
+        """Create a StreamHist object from a dictionary representation.
 
         The dictionary must be in the format given my `to_dict`. This class
         method, combined with the `to_dict` instance method, can facilitate
