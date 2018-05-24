@@ -226,10 +226,13 @@ class StreamHist(object):
         bins = list()
         for b in self.bins:
             bins.append({"mean": b.value, "count": b.count})
-        info = dict(missing_count=self.missing_count,
-                    maxbins=self.maxbins,
+        info = dict(maxbins=self.maxbins,
+                    total=self.total,
                     weighted=self.weighted,
-                    freeze=self.freeze)
+                    min=self._min,
+                    max=self._max,
+                    freeze=self.freeze,
+                    missing_count=self.missing_count,)
         return dict(bins=bins, info=info)
 
     @classmethod
@@ -243,6 +246,9 @@ class StreamHist(object):
         info = d["info"]
         bins = d["bins"]
         hist = cls(info["maxbins"], info["weighted"], info["freeze"])
+        hist.total = info['total']
+        hist._min = info['min']
+        hist._max = info['max']
         hist.missing_count = info["missing_count"]
         for b in bins:
             count = b["count"]
