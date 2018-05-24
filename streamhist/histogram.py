@@ -54,7 +54,6 @@ class StreamHist(object):
     def __init__(self, maxbins=64, weighted=False, freeze=None):
         """Create a Histogram with a max of n bins."""
         super(StreamHist, self).__init__()
-        # self.bins = []
         self.bins = SortedListWithKey(key=lambda b: b.value)
         self.maxbins = maxbins  # A useful property
         self.total = 0
@@ -203,7 +202,8 @@ class StreamHist(object):
         while len(self.bins) > self.maxbins:
             index = argmin(bin_diff(self.bins, self.weighted))
             prv = self.bins.pop(index)
-            self.bins[index] += prv
+            del self.bins[index]
+            self.bins.add(prv)
         return self
 
     def scale_down(self, exclude):
@@ -247,7 +247,7 @@ class StreamHist(object):
         for b in bins:
             count = b["count"]
             value = b["mean"]
-            hist.bins.append(Bin(value, count))
+            hist.bins.add(Bin(value, count))
         return hist
 
     def __len__(self):
@@ -588,7 +588,7 @@ class Bin(object):
         return self.value == obj.value
 
     def __lt__(self, obj):
-        """Tests if this bin has a lower mean than another bin.
+        """Tests if this bin has a lower mean than her bin.
 
         Parameters
         ----------
