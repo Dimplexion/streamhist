@@ -348,7 +348,6 @@ class StreamHist(object):
 
     def sum(self, x):
         """Return the estimated number of points in the interval [−∞, b]."""
-        print(x)
         x = float(x)
         if x < self._min:
             ss = 0.0  # Sum is zero!
