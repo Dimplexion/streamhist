@@ -162,7 +162,7 @@ class StreamHist(object):
             return self.quantiles(0.5)[0]
         else:
             # Return the 'exact' median when possible
-            mid = (self.total)/2
+            mid = int((self.total)/2)
             if self.total % 2 == 0:
                 return (self.bins[mid-1] + self.bins[mid]).value
             return self.bins[mid].value
@@ -202,8 +202,9 @@ class StreamHist(object):
         while len(self.bins) > self.maxbins:
             index = argmin(bin_diff(self.bins, self.weighted))
             prv = self.bins.pop(index)
+            adj_bin = self.bins[index]
             del self.bins[index]
-            self.bins.add(prv)
+            self.bins.add(prv + adj_bin)
         return self
 
     def scale_down(self, exclude):
